@@ -1,0 +1,9 @@
+<html>
+  {% include "people/head.html" %}
+  <body>
+    {% include "people/nav.html" %}
+<pre>
+{% for interaction in interactions %}
+{{ interaction }}{% if interaction.details %} - {{ interaction.details }}{% endif %}{% endfor %}
+</pre>
+</body></html>

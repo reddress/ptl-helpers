@@ -1,0 +1,19 @@
+<html>
+  {% include "people/head.html" %}
+  <body>
+    {% include "people/nav.html" %}
+<pre>
+  
+{{ person.name }} - {{ person.company }} ({{ person.sex|upper }})
+
+Ht. {{ person.height }}/10  Wt. {{ person.weight }}/10
+Skin tone {{ person.skin }}/10
+
+{{ person.hair_color }}, {{ person.hair }} hair
+Facial appearance: {{ person.face }}
+
+Extra: {{ person.extra }}
+{% for interaction in interactions %}
+{{ interaction }} {{ interaction.details }}{% endfor %}
+</pre>
+</body></html>

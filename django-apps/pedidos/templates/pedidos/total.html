@@ -1,0 +1,32 @@
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    <b>{{ label }}</b><br>
+    {% if pac %} <b>PAC:</b> {% endif %}
+    {% for chegada in pac %}
+    {{ chegada }}<br>
+    {% endfor %}<br>
+    
+    {{ pecas }} pçs<br>
+    {{ volumes }} vols<br><br>
+
+    {% for pedido in pedidos %}
+      <a href="/pedidos/{{ pedido.id }}/pedido/">{{ pedido.label }}</a><br>
+    {% endfor %}
+    <br>
+                
+    <b>Aguardando desistencia:</b><br><br>
+    {{ des_pecas }} pçs<br>
+    {{ des_volumes }} vols<br><br>
+                
+    {% for pedido in des_pedidos %}
+      <a href="/pedidos/{{ pedido.id }}/pedido/">{{ pedido.label }}</a><br>
+    {% endfor %}
+    <br>
+    
+  </body>
+</html>
+
+

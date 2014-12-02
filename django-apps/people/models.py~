@@ -1,0 +1,21 @@
+from django.db import models
+
+# Create your models here.
+class Person(models.Model):
+    company = models.CharField(max_length=99, default="unknown")
+    title = models.CharField(max_length=50, default="unknown")
+    sex = models.CharField(max_length=20, default="m")
+    height = models.IntegerField(default=5)
+    weight = models.IntegerField(default=5)
+    skin = models.IntegerField(default=5)
+    hair = models.CharField(max_length=99, default="unknown")
+    hair_color = models.CharField(max_length=20)
+    face = models.CharField(max_length=50, default="unknown")
+
+class Purpose(models.Model):
+    description = models.CharField(max_length=30)
+    
+class Interaction(models.Model):
+    date = models.DateTimeField()
+    person = models.ForeignKey(Person)
+    purpose = models.ForeignKey(Purpose)

@@ -1,0 +1,13 @@
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    {% for produto_codigo in produtos %}
+      <a href="/pedidos/{{ produto_codigo }}/produto/">{{ produto_codigo }}</a>
+      <br>
+    {% endfor %}
+  </body>
+</html>
+
+

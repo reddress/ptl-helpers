@@ -1,0 +1,5 @@
+<div class="header">
+  <a href="/pedidos/reserva">Reservas</a> |
+  <a href="/pedidos/container">Container</a> |
+  <a href="/pedidos/desistencia">Desistencia</a>
+</div>

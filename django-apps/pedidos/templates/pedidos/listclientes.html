@@ -1,0 +1,13 @@
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    {% for cliente in clientes %}
+      <a href="/pedidos/{{ cliente.id }}/cliente/">{{ cliente.codigo }} {{ cliente.nome }}</a>
+      <br>
+    {% endfor %}
+  </body>
+</html>
+
+

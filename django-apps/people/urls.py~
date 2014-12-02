@@ -1,0 +1,10 @@
+from django.conf.urls import patterns, url
+
+from . import views
+
+urlpatterns = patterns('',
+                       url(r'^$', views.index),
+                       url(r'^(?P<cliente_id>\d+)/cliente/$', views.index),
+                       url(r'^(?P<codigo>\S+)/total/$', views.index),
+                       url(r'^(?P<keyword>\S+)/$', views.index),
+                       )

@@ -1,0 +1,13 @@
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    {% for container in containers %}
+      <a href="/pedidos/{{ container }}/container/">{{ container }}</a>
+      <br>
+    {% endfor %}
+  </body>
+</html>
+
+

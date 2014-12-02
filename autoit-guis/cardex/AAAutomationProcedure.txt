@@ -1,0 +1,44 @@
+SHORT VERSION
+
+Update N:\CHEGANDO.ods
+Create install Autoit/Scripts/cardex/yyyy_mm_dd/numbers.txt
+Run AutoIt script "addcodletters.au3"
+Run Python shortcut PTL scripts/cardexverif2autoit
+Load GUIs PyGUI and cardexverif
+
+
+FULL DESCRIPTION
+================
+1. update N:\CHEGANDO.ods with Sr. Yeh data
+
+2. create folder in c:/Users/Heitor/Desktop/install Autoit/Scripts/cardex/
+named with current date (for example, 2014_05_26)
+
+2a. create text file "numbers.txt" that includes ONLY NUMBERS of product codes
+
+3. run Desktop/install Autoit/AutoIt3 and select addcodletters.au3
+
+3a. load the file from step 2.
+
+3b. click on next and enter the letters that appear in Produto (caps lock not
+needed). If only one code appears, click OK. Enter a space for products that
+do not have a letter.
+
+3c. save as "verificar.txt"
+
+4. run Desktop/PTL scripts/cardexverif2autoit and enter the folder from
+step 1. This runs runods2autoit. sortedautoit.txt in install Autoit/Scripts is
+created.
+
+5. run Desktop/PTL scripts/PyGUI (reposicao saved data)
+
+5a. run Desktop/install Autoit/AutoIt3 and select cardexverif.au3
+
+5b. click on next
+
+5c. the 3 fields in Tk GUI are Vendas 2013, Vendas 2014 (current, not saved),
+and Qtde. caixa grande, but may hold any value. Only the middle value is not
+saved.
+
+5d. if a mistake is made, Cardex Verif.au3 cannot be rewound and must be
+restarted. skip will advance the list without affecting other windows.

@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Pedidos Pontual</title>
+    <style>
+      body, td {
+      font-family: Arial, sans-serif;
+      font-size: 12px; 
+      }
+      .header { position: fixed; top: 0px; background-color: #eee; padding: 3px; }
+    </style>
+  </head>
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    {% for pedido in pedidos %}
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: {{ pedido.data|date:"d/m/Y" }}</td>
+        <td align="right">(delete {{ pedido.id }})</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: {{ pedido.vencimento|date:"d/m/Y" }}</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/{{ pedido.cliente.id }}/cliente">{{ pedido.cliente.nome }}</a></td>
+        <td align="right">Cód. Cliente: {{ pedido.cliente.codigo }}</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: <u>{{ pedido.condicoes }} -{{ pedido.desconto }}% desconto</u></td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: <u>{{ pedido.cliente.vendedor }}</u></td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            {% for lineitem in pedido.lineitem_set.all %}
+            <tr>
+              <td align="right">{{ lineitem.quantidade }}</td>
+              <td align="center">{{ lineitem.unidade }}</td>
+              <td>{{ lineitem.produto }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: <u>{{ pedido.observacoes }}</u>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Container:
+          {% if pedido.container %}
+          <a href="/pedidos/{{ pedido.container }}/container/">{{ pedido.container }}</a>
+          {% endif %}
+        </td>
+        <td>Extra: {{ pedido.extra }}</td>
+      </tr>
+    </table>
+    <hr>
+    {% endfor %}
+  </body>
+</html>
+
+

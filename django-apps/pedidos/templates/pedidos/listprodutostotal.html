@@ -1,0 +1,14 @@
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    {% for produto in produtos %}
+      <a href="/pedidos/{{ produto.codigo }}/total/">{{ produto.codigo }} {{ produto.descricao }}</a> -
+      <a href="/pedidos/{{ produto.codigo }}/foto/" target="_blank">(foto)</a>          
+      <br>
+    {% endfor %}
+  </body>
+</html>
+
+

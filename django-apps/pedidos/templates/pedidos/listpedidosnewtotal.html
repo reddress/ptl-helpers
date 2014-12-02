@@ -1,0 +1,38 @@
+{% load app_tags %}
+
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    {% for produto in produtos %}
+      <a href="/pedidos/{{ produto.codigo }}/newtotal/">{{ produto.codigo }} {{ produto.descricao }}</a> -
+      <a href="/pedidos/{{ produto.codigo }}/foto/" target="_blank">(foto)</a>
+
+      <br>
+      {% for pac in pac_dict|get_item:produto.codigo %}
+      <b>PAC:</b> {{ pac }}<br>
+      {% endfor %}
+
+      <ul>
+        {% for lineitem in cobrar_dict|get_item:produto.codigo %}
+        <li><b>Cobrar</b>: <a href="/pedidos/{{ lineitem.pedido.id }}/pedido">{{ lineitem }}</a></li>
+        {% endfor %}
+      </ul>
+      
+      <ul>
+        {% for lineitem in container_dict|get_item:produto.codigo %}
+        <li><b>Aguardando container</b>: <a href="/pedidos/{{ lineitem.pedido.id }}/pedido">{{ lineitem }}</a></li>
+        {% endfor %}
+      </ul>
+      
+      <ul>
+        {% for lineitem in pedidos_dict|get_item:produto.codigo %}
+        <li><a href="/pedidos/{{ lineitem.pedido.id }}/pedido">{{ lineitem }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </body>
+</html>
+
+

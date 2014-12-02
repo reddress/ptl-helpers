@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <form action="#">
+      <input type="text" id="thecode">
+      <button id="thebtn" onclick="changeSrc(document.getElementById('thecode').value);">Find</button><br>
+    </form>
+    
+    <img src="" id="theimg" width="700">
+    <script type="text/javascript">
+      function changeSrc(newsrc) {
+      document.getElementById("theimg").src="file:///C:/Users/Heitor/Desktop/Fotos%20com%20codigos%20local/"+newsrc+".jpg";
+      document.getElementById("thecode").value = "";
+      }
+    </script>
+  </body>
+</html>

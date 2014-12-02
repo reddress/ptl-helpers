@@ -1,0 +1,9 @@
+<html>
+  {% include "people/head.html" %}
+  <body>
+    {% include "people/nav.html" %}
+<pre>
+{% for person in people %}
+<a href="/people/{{ person.id }}/person/">{{ person.name }}</a>{% endfor %}
+</pre>
+</body></html>

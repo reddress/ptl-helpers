@@ -1,0 +1,3 @@
+{% for interaction in interactions %}
+{{ interaction }}
+{% endfor }}

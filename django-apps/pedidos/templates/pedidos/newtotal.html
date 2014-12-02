@@ -1,0 +1,49 @@
+{% load app_tags %}
+
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    <b>{{ toplabel }}</b><br>
+    
+    {% for container in containers %}
+    <hr>
+    {% ifnotequal container None %}
+    <a href="/pedidos/{{ container }}/container/">
+    {% endifnotequal %}
+    <b>Container {{ container }}</b><br>
+    {% ifnotequal container None %}
+    </a>
+    {% endifnotequal %}
+
+    <b>PAC: </b>{{ pac_dict|get_item:container }}<br><br>
+    
+    Peças: {{ pecas_total|get_item:container }}<br>
+    Volumes: <span id="vols{{ container }}">{{ vol_total|get_item:container }}</span> x
+    <input type="text" size="9" id="qtd_cx{{ container }}">
+    <button onclick="calcTotalPc('vols{{ container }}', 'qtd_cx{{ container }}', 'total_pc{{ container }}');">=</button>
+    <input type="text" size="9" id="total_pc{{ container }}">
+    <br><br>
+    
+    {% for lineitem in pedidos_dict|get_item:container %}
+    <a href="/pedidos/{{ lineitem.pedido.id }}/pedido/">
+    {{ lineitem.quantidade }} {{ lineitem.unidade }} {{ lineitem.pedido.cliente.nome }} ({{ lineitem.pedido.cliente.vendedor }})
+    {% ifequal container "None" %}
+      - {{ lineitem.pedido.observacoes }} {{ lineitem.pedido.extra }}
+    {% endifequal %}
+    </a>
+    <br>
+    {% endfor %}
+    {% endfor %}
+  <script>
+      function calcTotalPc(vols, qtd_cx, total_pc) {
+        document.getElementById(total_pc).value=
+        parseInt(document.getElementById(vols).innerHTML) *
+        parseInt(document.getElementById(qtd_cx).value);
+      }
+  </script>
+  </body>
+</html>
+
+

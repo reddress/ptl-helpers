@@ -1,0 +1,84 @@
+<html>
+  {% include "pedidos/head.html" %}
+  <body>
+    {% include "pedidos/nav.html" %}
+    <br>
+    {% for pedido in pedidos %}
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: {{ pedido.data|date:"d/m/Y, l"|lower }}</td>
+        <td align="right">
+          ID: {{ pedido.id }}
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: {{ pedido.vencimento|date:"d/m/Y, l"|lower }}</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/{{ pedido.cliente.id }}/cliente">{{ pedido.cliente.nome }}</a></td>
+        <td align="right">Cód. Cliente: {{ pedido.cliente.codigo }}</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: {{ pedido.condicoes }} -{{ pedido.desconto }}% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: {{ pedido.cliente.vendedor }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            {% for lineitem in pedido.lineitem_set.all %}
+            <tr>
+              <td align="right">{{ lineitem.quantidade }}</td>
+              <td align="center">{{ lineitem.unidade }}</td>
+              <td>
+                <a href="/pedidos/{{ lineitem.produto.codigo }}/produto/"><b>{{ lineitem.produto.codigo }}</b> {{ lineitem.produto.descricao }}</a> - 
+                <a href="/pedidos/{{ lineitem.produto.codigo }}/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: {{ pedido.observacoes }}
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          {% if pedido.container %}
+          <a href="/pedidos/{{ pedido.container }}/container/">{{ pedido.container }}</a>
+          {% endif %}
+        </td>
+        <td>Extra: <b>{{ pedido.extra }}</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/{{ pedido.id }}/" target="admin">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText({{ pedido.id }});">
+          <a href="/pedidos/{{ location }}/{{ pedido.id }}/delete/" id="{{ pedido.id }}" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    {% endfor %}
+    <script>
+      function toggleText(id) {
+        document.getElementById(id).style.visibility="visible";
+      }
+    </script>
+  </body>
+</html>
+
+

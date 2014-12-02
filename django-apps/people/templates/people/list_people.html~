@@ -1,0 +1,4 @@
+
+{% for person in people %}
+{{ person.name }}
+{% endfor %}
